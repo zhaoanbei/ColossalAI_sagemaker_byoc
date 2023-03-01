@@ -99,7 +99,7 @@ data:
 lightning:
   trainer:
     accelerator: 'gpu'
-    devices: 2
+    devices: 1
     log_gpu_memory: all
     max_epochs: 2
     precision: 16
