@@ -571,7 +571,7 @@ class S3Sync:
         return paths
     
 if __name__ == "__main__":
-    cfg = '/opt/ml/train_colossalai_teyvat.yaml'
+    cfg = '/opt/ml/input/data/training/train_colossalai_teyvat.yaml'
     now = datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
     sys.path.append(os.getcwd())
 
