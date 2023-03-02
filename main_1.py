@@ -160,6 +160,12 @@ def get_parser(**parser_kwargs):
         default=True,
         help="scale base-lr by ngpu * batch_size * n_accumulate",
     )
+    parser.add_argument(
+        "--s3_path",
+        type=str,
+        default='s3://sagemaker-us-west-2-310850127430/df_model/',
+        help="s3 model path",
+    )
 
     return parser
 
@@ -875,7 +881,7 @@ if __name__ == "__main__":
         if trainer.global_rank == 0:
             print(trainer.profiler.summary())
         
-        s5cmd ='s5cmd sync /opt/ml/df_model s3://sagemaker-us-west-2-310850127430/df0302/'
+        s5cmd =f's5cmd sync {ckptdir} s3://sagemaker-us-west-2-310850127430/df_model/'
         print(s5cmd)
         p = Popen(shlex.split(s5cmd))
         print(p)

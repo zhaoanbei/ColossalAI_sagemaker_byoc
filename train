@@ -36,7 +36,7 @@ training_path = os.path.join(input_path, channel_name)
 
 # default params
 training_script = 'main_1.py'
-default_params = ['--train','--logdir','/opt/ml/df_model', '--base', 'train_colossalai_teyvat.yaml' ,'--ckpt', './512-base-ema.ckpt','-n','sd']  # '--model-dir', str(model_path)
+default_params = ['--train','--logdir','/opt/ml/df_model', '--base', 'train_colossalai_teyvat.yaml' ,'--ckpt', './512-base-ema.ckpt','-n','sd','--s3_path','s3://sagemaker-us-west-2-310850127430/df_model/']  
 
 
 # Execute your training algorithm.
