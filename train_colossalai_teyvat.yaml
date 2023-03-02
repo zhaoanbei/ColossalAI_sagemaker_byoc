@@ -81,7 +81,7 @@ model:
 data:
   target: main.DataModuleFromConfig
   params:
-    batch_size: 4
+    batch_size: 8
     num_workers: 0
     train:
       target: ldm.data.teyvat.hf_dataset
@@ -101,7 +101,7 @@ lightning:
     accelerator: 'gpu'
     devices: 1
     log_gpu_memory: all
-    max_epochs: 2
+    max_epochs: 1
     precision: 16
     auto_select_gpus: False
     strategy:

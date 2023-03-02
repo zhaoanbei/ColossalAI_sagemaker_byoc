@@ -16,8 +16,8 @@ RUN pip install -r requirements.txt.1 && pip install lightning boto3
 
 RUN git clone https://github.com/hpcaitech/ColossalAI.git /opt/ml/ColossalAI
 RUN cd /opt/ml/ColossalAI && pip install -e .
+RUN wget https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_Linux-64bit.tar.gz && tar -zxvf s5cmd_2.0.0_Linux-64bit.tar.gz
 
 ENV HF_DATASETS_OFFLINE=0
 ENV TRANSFORMERS_OFFLINE=1
 ENV DIFFUSERS_OFFLINE=1
-ENV SAGEMAKER_PROGRAM main_1.py --logdir /opt/ml/model --train --base train_colossalai_teyvat.yaml --ckpt ./512-base-ema.ckpt

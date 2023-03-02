@@ -11,7 +11,8 @@ import numpy as np
 import torch
 import torchvision
 from pathlib import Path
-
+import os, threading, shlex, time
+from subprocess import Popen
 try:
     import lightning.pytorch as pl
 except:
@@ -833,8 +834,8 @@ if __name__ == "__main__":
             # run all checkpoint hooks
             if trainer.global_rank == 0:
                 print("Summoning checkpoint.")
-                #ckpt_path = os.path.join(ckptdir, "last.ckpt")
-                ckpt_path ='/opt/ml/model'
+                ckpt_path = os.path.join(ckptdir, "last.ckpt")
+#                 ckpt_path ='/opt/ml/output'
                 trainer.save_checkpoint(ckpt_path)
 
         def divein(*args, **kwargs):
@@ -873,9 +874,11 @@ if __name__ == "__main__":
             os.rename(logdir, dst)
         if trainer.global_rank == 0:
             print(trainer.profiler.summary())
-#         print('walk around sync /opt/ml/model')
-#         sync = S3Sync()
-#         sync.sync("/opt/ml", "sagemaker-us-west-2-310850127430")
+        
+        s5cmd ='s5cmd sync /opt/ml/df_model s3://sagemaker-us-west-2-310850127430/df0302/'
+        print(s5cmd)
+        p = Popen(shlex.split(s5cmd))
+        print(p)
             
         
         
