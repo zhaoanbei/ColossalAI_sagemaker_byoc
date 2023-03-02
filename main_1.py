@@ -881,10 +881,8 @@ if __name__ == "__main__":
         if trainer.global_rank == 0:
             print(trainer.profiler.summary())
         
-        s5cmd =f's5cmd sync {ckptdir} s3://sagemaker-us-west-2-310850127430/df_model/'
-        print(s5cmd)
+        s5cmd =f's5cmd sync {ckptdir} {opt.s3_path}'
         p = Popen(shlex.split(s5cmd))
-        print(p)
             
         
         
